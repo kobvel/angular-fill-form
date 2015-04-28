@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="Softengi">
+<head>
+	<title>Test app for Softengi</title>
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+</head>
+<body ng-controller="AppController as app">
+
+	<H2>Incident Form</H2>
+	<div class="col-md-7">	
+		
+		<ul class="tabs">
+			<li>
+				<a ui-sref="generalTab">General Information
+				</a>
+			</li>
+			<li>
+				<a ui-sref="correctiveAction">Corrective Actions
+				</a>
+			</li>
+			<li>
+				<a ui-sref="reviewAndSubmit">REVIEW and SUBMIT
+				</a>
+			</li>
+
+		</ul>
+
+		<div ui-view></div>
+	</div>
+	<!-- Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
+	<!-- UI-Router -->
+	<script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>

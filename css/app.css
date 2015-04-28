@@ -1,0 +1,51 @@
+body {
+	padding-left: 25px;
+}
+body > div{
+	border: solid;
+	height: 38em;
+	background-color: #E0FFFF;
+}
+
+body > div > div {
+	padding-top: 25px;
+	
+}
+.tabs{
+	display: inline-block;
+}
+.infotext{
+	text-align: right;
+
+}
+.rowform{
+	padding-top: 1em;
+}
+
+.checkapply{
+	border: 2px solid black; ;
+}
+.checkapply > hr{
+	height:2px;
+	border:none; 
+	color:#000;
+	background-color:#000;
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+}
+
+ul.tabs,
+ul.tabs li {
+	margin: 0;	
+	padding: 0;
+	
+}
+
+ul.tabs li {
+	
+	display: inline-block;	
+ 	width: 150px;
+	border: solid 1px;
+	
+	
+}
