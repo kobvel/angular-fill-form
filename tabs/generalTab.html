@@ -12,12 +12,14 @@
 			<label>* Date and time Incident:</label>
 		</div>
 		<div class="col-md-7">
-			<div class='input-group date'>
-				<input type='text' class="form-control" />
-				<span class="input-group-addon">
-					<span class="glyphicon glyphicon-calendar"></span>
+
+			<p class="input-group">
+				<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+				<span class="input-group-btn"> 
+					<button type="button" class="btn btn-default" ng-click="app.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
-			</div>
+			</p>
+
 		</div>
 	</div>
 	<div class="row rowform">
@@ -41,7 +43,7 @@
 				<option>4</option>
 				<option>5</option>
 			</select>
-			
+
 		</div>
 	</div>
 	<div class="row rowform">
@@ -76,12 +78,8 @@
 			<label>* Well number:</label>
 		</div>
 		<div class="col-md-8">
-			<select class="form-control">
-				<option>Well-01</option>
-				<option>Well-02</option>
-				<option>Well-03</option>
-				<option>Well-04</option>
-				<option>Well-05</option>
+			<select ng-model="app.input.wellNumber" class="form-control">
+				<option ng-repeat="well in app.wells" value="{{well}}">{{well.name}}</option>
 			</select>
 		</div>
 	</div>
@@ -91,7 +89,7 @@
 			<p>Region</p>
 		</div>
 		<div class="col-md-8">
-			<input type="text" class="form-control">
+			<input type="text" class="form-control" readonly>
 		</div>
 	</div>
 
@@ -100,7 +98,7 @@
 			<p>State</p>
 		</div>
 		<div class="col-md-8">
-			<input type="text" class="form-control">
+			<input ng-model="app.input.wellNumber"  type="text" class="form-control" readonly>
 		</div>
 	</div>
 
@@ -109,7 +107,7 @@
 			<p>Field Office</p>
 		</div>
 		<div class="col-md-8">
-			<input type="text" class="form-control">
+			<input type="text" class="form-control" readonly>
 		</div>
 	</div>
 
@@ -120,13 +118,13 @@
 		<div class="col-md-8 checkapply">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" value="" checked>
+					<input type="checkbox" value="" checked ng-disabled="app.noneApply">
 					Loss of well control
 				</label>
 			</div>
 			<div class="checkbox ">
 				<label>
-					<input type="checkbox" value="" >
+					<input type="checkbox" value="" ng-disabled="app.noneApply">
 					Fatality(ies)
 				</label>
 			</div>
@@ -138,26 +136,26 @@
 			</div>
 			<div class="checkbox ">
 				<label>
-					<input type="checkbox" value="" checked >
+					<input type="checkbox" value="" checked ng-disabled="app.noneApply">
 					Spill offsite > 50 Bbls
 				</label>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" value="">
+					<input type="checkbox" value="" ng-disabled="app.noneApply">
 					Spill to water, any amount
 				</label>
 			</div>
 			<div class="checkbox ">
 				<label>
-					<input type="checkbox" value="" >
+					<input type="checkbox" value="" ng-disabled="app.noneApply">
 					Property damage
 				</label>
 			</div>
 			<hr>
 			<div class="checkbox ">
 				<label>
-					<input type="checkbox" value="" checked>
+					<input type="checkbox" value="" checked ng-model="app.noneApply">
 					None apply
 				</label>
 			</div>

@@ -6,17 +6,16 @@ body > div{
 	height: 38em;
 	background-color: #E0FFFF;
 }
-
+.titlesrow{
+	display: inline-block;
+}
 body > div > div {
 	padding-top: 25px;
 	
 }
-.tabs{
-	display: inline-block;
-}
+
 .infotext{
 	text-align: right;
-
 }
 .rowform{
 	padding-top: 1em;
@@ -37,15 +36,15 @@ body > div > div {
 ul.tabs,
 ul.tabs li {
 	margin: 0;	
-	padding: 0;
-	
+	padding: 0;	
 }
 
-ul.tabs li {
-	
+ul.tabs li {	
 	display: inline-block;	
  	width: 150px;
 	border: solid 1px;
 	
-	
+}
+.buttonSubmit{
+	width: 100px;
 }
