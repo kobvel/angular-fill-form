@@ -7,43 +7,43 @@
 	</p>
 </div>
 <div class="col-md-6">
-	<div class="row">
-		<div class="col-md-5 infotext" >
-			<label>* Date and time Incident:</label>
-		</div>
-		<div class="col-md-7">
+	<form name="firstForm" novalidate>
+		<div class="row">
+			<div class="col-md-5 infotext" >
+				<label>* Date and time Incident:</label>
+			</div>
+			<div class="col-md-7">
 
-			<p class="input-group">
-				<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-				<span class="input-group-btn"> 
-					<button type="button" class="btn btn-default" ng-click="app.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				<p class="input-group">
+					<input type="text" class="form-control" name="date" datepicker-popup="{{format}}" ng-model="app.input.date" is-open="app.opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-pattern="app.regexpDate"required/>
+					<span class="input-group-btn"> 
+						<button type="button" class="btn btn-default" ng-click="app.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+					</span>
+					
+				</p>
+				<span style="color:red" class="error-message" ng-show="firstForm.date.$dirty && firstForm.date.$invalid">Date format is invalid</span>
+			</div>
+		</div>
+		<div class="row rowform">
+			<div class="col-md-5 infotext" >
+				<label>* Reported by:</label>
+			</div>
+			<div class="col-md-7">
+				<input type="text" name="reporter" ng-model="app.input.reporter" class="form-control" ng-minlength="3" ng-maxlength="50" required>
+				<span style="color:red" ng-show="firstForm.reporter.$dirty && firstForm.reporter.$invalid">
+					<span ng-show="firstForm.reporter.$error.required">reporter is required.</span>
+					<span ng-show="firstForm.reporter.$error.minlength">reporter is too short.</span>
+					<span ng-show="firstForm.reporter.$error.maxlength">reporter is too long.</span>
 				</span>
-			</p>
-
+			</div>
 		</div>
-	</div>
-	<div class="row rowform">
-		<div class="col-md-5 infotext" >
-			<label>* Reported by:</label>
-		</div>
-		<div class="col-md-7">
-			<input type="text" value="John Doe" class="form-control" >
-		</div>
-	</div>
-	<div class="row rowform">
-		<div class="col-md-5 infotext" >
-			<label>* Company of reporter:</label>
-		</div>
-		<div class="col-md-7">
-			<select class="form-control">
-				<option value="" disabled selected>--select--</option>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-			</select>
-
+		<div class="row rowform">
+			<div class="col-md-5 infotext" >
+				<label>* Company of reporter:</label>
+			</div>
+			<div class="col-md-7">
+				<select ng-model="app.input.company" name="company" ng-options="company as company for company in app.companies" class="form-control" required>
+				</select>				
 		</div>
 	</div>
 	<div class="row rowform">
@@ -51,7 +51,8 @@
 			<label>* Contact number:</label>
 		</div>
 		<div class="col-md-7">
-			<input type="text" class="form-control" placeholder="405.234.97.9751">
+			<input ng-model="app.input.number" ng-model="app.input.number" name="number" type="text" class="form-control"  ng-pattern="/^(?:\d{3}[.]?\d{3}[.]?\d{2}[.]?\d{4})$/" placeholder="405.234.97.9751" ng-required>
+			<span style="color:red" class="error-message" ng-show="firstForm.number.$dirty && firstForm.number.$invalid">The phone number is invalid</span>
 		</div>
 	</div>
 	<div class="row rowform">
@@ -59,7 +60,7 @@
 			<p>Supervisor Name:</p>
 		</div>
 		<div class="col-md-7" >
-			<input type="text" class="form-control">
+			<input type="text" ng-model="app.input.supervisor" class="form-control">
 		</div>
 	</div>
 	<div class="row rowform">
@@ -67,20 +68,27 @@
 			<label>* High level Description of Incident:</label>
 		</div>
 		<div class="col-md-7">
-			<textarea class="form-control" rows="3"></textarea>
+			<textarea ng-model="app.input.description" name="description" class="form-control" rows="3" ng-minlength="7" ng-maxlength="150" required></textarea>
+			<span style="color:red" ng-show="firstForm.description.$dirty && firstForm.description.$invalid">
+				<span ng-show="firstForm.description.$error.required">description is required.</span>
+				<span ng-show="firstForm.description.$error.minlength">description is too short.</span>
+			</span>
 		</div>
 	</div>
 </div>
 
 <div class="col-md-6">
+
 	<div class="row">
 		<div class="col-md-4 infotext" >
 			<label>* Well number:</label>
 		</div>
 		<div class="col-md-8">
-			<select ng-model="app.input.wellNumber" class="form-control">
-				<option ng-repeat="well in app.wells" value="{{well}}">{{well.name}}</option>
+			<select ng-model="app.input.wellNumber" name="well" ng-options="well.name for well in app.wells" class="form-control" required>
 			</select>
+			<span style="color:red" ng-show="firstForm.well.$invalid">
+				<span ng-show="firstForm.well.$error.required">well is required.</span>
+			</span>
 		</div>
 	</div>
 
@@ -89,7 +97,7 @@
 			<p>Region</p>
 		</div>
 		<div class="col-md-8">
-			<input type="text" class="form-control" readonly>
+			<input ng-model="app.input.wellNumber.region" type="text" class="form-control" readonly>
 		</div>
 	</div>
 
@@ -98,7 +106,7 @@
 			<p>State</p>
 		</div>
 		<div class="col-md-8">
-			<input ng-model="app.input.wellNumber"  type="text" class="form-control" readonly>
+			<input ng-model="app.input.wellNumber.state"  type="text" class="form-control" readonly>
 		</div>
 	</div>
 
@@ -107,7 +115,7 @@
 			<p>Field Office</p>
 		</div>
 		<div class="col-md-8">
-			<input type="text" class="form-control" readonly>
+			<input ng-model="app.input.wellNumber.field" type="text" class="form-control" readonly>
 		</div>
 	</div>
 
@@ -118,48 +126,48 @@
 		<div class="col-md-8 checkapply">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" value="" checked ng-disabled="app.noneApply">
+					<input ng-model="app.input.severity.loss" type="checkbox"checked ng-disabled="app.noneApply">
 					Loss of well control
 				</label>
 			</div>
 			<div class="checkbox ">
 				<label>
-					<input type="checkbox" value="" ng-disabled="app.noneApply">
+					<input ng-model="app.input.severity.fatality" type="checkbox"  ng-disabled="app.noneApply">
 					Fatality(ies)
 				</label>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" value="">
+					<input ng-model="app.input.severity.hospitalization" type="checkbox" ng-disabled="app.noneApply">
 					Hospitalizaion or medical treatment
 				</label>
 			</div>
 			<div class="checkbox ">
 				<label>
-					<input type="checkbox" value="" checked ng-disabled="app.noneApply">
+					<input ng-model="app.input.severity.spill" type="checkbox" checked ng-disabled="app.noneApply">
 					Spill offsite > 50 Bbls
 				</label>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" value="" ng-disabled="app.noneApply">
+					<input ng-model="app.input.severity.spill2" type="checkbox"ng-disabled="app.noneApply">
 					Spill to water, any amount
 				</label>
 			</div>
 			<div class="checkbox ">
 				<label>
-					<input type="checkbox" value="" ng-disabled="app.noneApply">
+					<input ng-model="app.input.severity.damage" type="checkbox" ng-disabled="app.noneApply">
 					Property damage
 				</label>
 			</div>
 			<hr>
 			<div class="checkbox ">
 				<label>
-					<input type="checkbox" value="" checked ng-model="app.noneApply">
+					<input type="checkbox" ng-model="app.nonApply" checked ng-model="app.noneApply">
 					None apply
 				</label>
 			</div>
 		</div>
 	</div>
-
+</form>
 </div>

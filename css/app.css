@@ -41,10 +41,20 @@ ul.tabs li {
 
 ul.tabs li {	
 	display: inline-block;	
- 	width: 150px;
+	width: 150px;
 	border: solid 1px;
 	
 }
 .buttonSubmit{
 	width: 100px;
 }
+#table-action{
+	table-layout:fixed; 
+}
+#table-result{
+	overflow-y: scroll;
+	height: 29em;
+}
+#table-result table tr td:nth-child(1) { 
+   text-align: right;
+} 

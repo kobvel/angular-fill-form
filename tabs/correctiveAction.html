@@ -8,19 +8,22 @@
 <label> Immaduate Correctuve Action(s)</label> ({{5-app.actions.length}} of 5 aviable)
 
 
-<table class="table table-striped table-bordered .table-condensed header-row">
+<table id="table-action"class="table table-striped table-bordered .table-condensed header-row">
+<col align="right">
 	<tr>
 		<td><label>Description of Corrective Action</label></td>
 		<td><label>Action Taken By (name) *</label></td>
 		<td><label>Company *</label></td>
 		<td><label>Date *</label></td>
 		<td><label>Action
-		<button class="btn btn-default" ng-click="app.addTableRow()">Add</button>
 			
 		</label></td>
+
+		
 	</tr>
 	<tr ng-repeat="action in app.actions">
 
+		
 		<td >			
 			<div ng-hide="app.editionData[action.id]">{{ action.description }}</div>
 			<div ng-show="app.editionData[action.id]"><input class="form-control" type="text" ng-model="action.description" /></div>
@@ -33,7 +36,7 @@
 
 		<td>
 			<div ng-hide="app.editionData[action.id]">{{ action.company }}</div>
-			<div ng-show="app.editionData[action.id]"><input class="form-control" type="text" ng-model="action.company" /></div>
+			<div ng-show="app.editionData[action.id]"><input  class="form-control" type="text" ng-model="action.company" /></div>
 		</td>
 
 		<td>
@@ -42,11 +45,11 @@
 		</td>
 
 		<td>
-			<button class="btn btn-default" ng-hide="app.editionData[action.id]" ng-click="app.editTable(action)">Modify</button>
-			<button class="btn btn-default" ng-show="app.editionData[action.id]" ng-click="app.updateTable(action)">Update</button>
-			<button class="btn btn-default" ng-click="app.deleteRow(this.value)" value="action.id">delete</button>
-
+			<button class="btn btn-default" ng-disabled="!app.editionEnabled()" ng-hide="app.editionData[action.id]" ng-click="app.editTable(action)">edit</button>
+			<button class="btn btn-default" ng-show="app.editionData[action.id]" ng-click="app.updateTable(action)">save</button>
+			<button class="btn btn-default" ng-disabled="!app.editionEnabled()"  ng-click="app.deleteRow(this.value)" value="action.id">delete</button>
+			
 		</td>
 	</tr>
 </table>
-<button class="btn btn-default" ng-click="app.show()">show</button>
+<button class="btn btn-default" ng-disabled="!app.editionEnabled()" ng-click="app.addTableRow()">Add</button>

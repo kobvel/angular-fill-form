@@ -22,7 +22,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: "tabs/generalTab.html"
     })
 
-
   .state('correctiveAction', {
     url: "/correctiveAction",
     templateUrl: "tabs/correctiveAction.html"

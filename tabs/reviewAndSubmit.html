@@ -7,6 +7,38 @@
 		</p>
 	</div>
 	<div class="col-md-4 infotext">
-		<button type="submit" class="btn btn-default buttonSubmit" disabled>Submit</button>
+		<button type="submit" ng-click="app.getJson()" class="btn btn-default buttonSubmit" ng-disabled="!app.submitEnabled()">Submit</button>
 	</div>
+
+
+</div>
+<div id="table-result" class="col-md-12 infotable">
+	<label>General Information:</label>
+	<table  class="table table-striped">
+		<tr ng-repeat="key in app.fields">
+			<td >{{key.name + ':'}}		
+
+
+			</td>
+			<td >
+				<span>{{key.values }}</span>
+				<span class="text-danger"ng-if="!key.values && key.required"> This field is required.</span>
+			</td>
+
+		</tr>
+
+		<label>Immediate Corrective Action(s):</label>
+
+		<tr ng-repeat="key in app.correctives">
+			<td >{{key.name + ':'}}		
+
+
+			</td>
+			<td >
+				<span>{{key.values }}</span>
+				<!-- <span class="text-danger"ng-if="!key.values && key.required"> This field is required.</span> -->
+			</td>
+
+		</tr>
+	</table>
 </div>
