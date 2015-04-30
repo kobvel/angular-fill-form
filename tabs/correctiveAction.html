@@ -1,55 +1,64 @@
-<div class="col-md-12">
-	<p>
-		<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-		Please complete the table below
-	</p>
+<div class="tab-for">
+	<div class="col-md-12">
+		<p>
+			<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+			Please complete the table below
+		</p>
+	</div>
+
+	<label> Immaduate Correctuve Action(s)</label> ({{5-app.actions.length}} of 5 aviable)
+
+
+	<table id="table-action"class="table table-striped table-bordered .table-condensed header-row">
+		<col align="right">
+		<tr>
+			<td><label>Description of Corrective Action</label></td>
+			<td><label>Action Taken By (name) *</label></td>
+			<td><label>Company *</label></td>
+			<td><label>Date *</label></td>
+			<td><label>Action
+
+			</label></td>
+
+
+		</tr>
+
+		<tr ng-repeat="action in app.actions">
+
+
+			<td >			
+				<div ng-hide="app.editionData[action.id]">{{ action.description }}</div>
+				<div ng-show="app.editionData[action.id]"><input class="form-control" type="text" name="descr" ng-model="action.description" required/></div>
+
+			</td>
+
+			<td >
+				<div ng-hide="app.editionData[action.id]">{{ action.name }}</div>
+				<div ng-show="app.editionData[action.id]"><input class="form-control" type="text" name="name" ng-model="action.name" required/></div>
+
+			</td>
+
+			<td>
+				<div ng-hide="app.editionData[action.id]">{{ action.company }}</div>
+				<div ng-show="app.editionData[action.id]"><input  class="form-control" type="text" name="company" ng-model="action.company" required/></div>
+
+			</td>
+
+			<td>
+				<div ng-hide="app.editionData[action.id]">{{ action.date }}</div>
+				<div ng-show="app.editionData[action.id]"><input class="form-control" name="date" type="text" ng-model="action.date" required/></div>
+
+			</td>
+
+			<td>
+				<button class="btn btn-default" ng-disabled="!app.editionEnabled()" ng-hide="app.editionData[action.id]" ng-click="app.editTable(action)">edit</button>
+				<button class="btn btn-default" ng-show="app.editionData[action.id]" ng-click="app.updateTable(action)">save</button>
+				<button class="btn btn-default" ng-disabled="!app.editionEnabled()"  ng-click="app.deleteRow(this.value)" value="action.id">delete</button>
+
+			</td>
+		</tr>
+
+	</table>
+
+	<button class="btn btn-default" ng-disabled="!app.editionEnabled()" ng-click="app.addTableRow()">Add</button>
 </div>
-
-<label> Immaduate Correctuve Action(s)</label> ({{5-app.actions.length}} of 5 aviable)
-
-
-<table id="table-action"class="table table-striped table-bordered .table-condensed header-row">
-<col align="right">
-	<tr>
-		<td><label>Description of Corrective Action</label></td>
-		<td><label>Action Taken By (name) *</label></td>
-		<td><label>Company *</label></td>
-		<td><label>Date *</label></td>
-		<td><label>Action
-			
-		</label></td>
-
-		
-	</tr>
-	<tr ng-repeat="action in app.actions">
-
-		
-		<td >			
-			<div ng-hide="app.editionData[action.id]">{{ action.description }}</div>
-			<div ng-show="app.editionData[action.id]"><input class="form-control" type="text" ng-model="action.description" /></div>
-		</td>
-		
-		<td >
-			<div ng-hide="app.editionData[action.id]">{{ action.name }}</div>
-			<div ng-show="app.editionData[action.id]"><input class="form-control" type="text" ng-model="action.name" /></div>
-		</td>
-
-		<td>
-			<div ng-hide="app.editionData[action.id]">{{ action.company }}</div>
-			<div ng-show="app.editionData[action.id]"><input  class="form-control" type="text" ng-model="action.company" /></div>
-		</td>
-
-		<td>
-			<div ng-hide="app.editionData[action.id]">{{ action.date }}</div>
-			<div ng-show="app.editionData[action.id]"><input class="form-control" type="text" ng-model="action.date" /></div>
-		</td>
-
-		<td>
-			<button class="btn btn-default" ng-disabled="!app.editionEnabled()" ng-hide="app.editionData[action.id]" ng-click="app.editTable(action)">edit</button>
-			<button class="btn btn-default" ng-show="app.editionData[action.id]" ng-click="app.updateTable(action)">save</button>
-			<button class="btn btn-default" ng-disabled="!app.editionEnabled()"  ng-click="app.deleteRow(this.value)" value="action.id">delete</button>
-			
-		</td>
-	</tr>
-</table>
-<button class="btn btn-default" ng-disabled="!app.editionEnabled()" ng-click="app.addTableRow()">Add</button>

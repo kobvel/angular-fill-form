@@ -1,10 +1,6 @@
 angular.module('Softengi.controllers', []);
 angular.module('Softengi.directives', []);
-/*angular
-  .module('Softengi', [
-    'Softengi.controllers',
-    'ui.router'
-  ]);*/
+
 var app = angular.module('Softengi', [
   'ui.router',
   'Softengi.controllers',

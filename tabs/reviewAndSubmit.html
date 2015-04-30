@@ -7,7 +7,7 @@
 		</p>
 	</div>
 	<div class="col-md-4 infotext">
-		<button type="submit" ng-click="app.getJson()" class="btn btn-default buttonSubmit" ng-disabled="!app.submitEnabled()">Submit</button>
+		<button type="submit" ng-click="app.getJson()"  class="btn btn-default buttonSubmit" ng-disabled="!app.submitEnabled()">Submit</button>
 	</div>
 
 
@@ -15,7 +15,7 @@
 <div id="table-result" class="col-md-12 infotable">
 	<label>General Information:</label>
 	<table  class="table table-striped">
-		<tr ng-repeat="key in app.fields">
+		<tr ng-repeat="key in app.fields track by $index">
 			<td >{{key.name + ':'}}		
 
 
@@ -29,7 +29,7 @@
 
 		<label>Immediate Corrective Action(s):</label>
 
-		<tr ng-repeat="key in app.correctives">
+		<tr ng-repeat="key in app.correctives track by $index">
 			<td >{{key.name + ':'}}		
 
 

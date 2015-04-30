@@ -67,7 +67,7 @@
       }
     };
     var result = {};
-    var nonApply = false;
+    var noneApply = false;
     var toJson = [];
 
     angular.extend(self, {
@@ -76,7 +76,7 @@
       wells: wells,
       regexpDate: regexpDate,
       input: input,
-      nonApply: nonApply,
+      noneApply: noneApply,
       toggleModal: toggleModal,
       editionData: [],
       editTable: editTable,
@@ -93,8 +93,9 @@
       submitEnabled: submitEnabled
     });
 
-    function generateResult() {
 
+    function generateResult() {
+      console.log(noneApply);
       self.actions.forEach(addAction);
 
       self.fields = [{
@@ -136,15 +137,15 @@
         "values": self.input.wellNumber.field
       }, {
         "name": "Incident Severity (Check all that Apply)",
-        "values": getSeverity(),
+        "values": getSeverity().toString(),
         "required": true
       }];
     }
 
     function rebuildData(element, index, array) {
-      if (element.required) {
-        delete element.required
-      }
+
+      delete element.required;
+
 
       if (element.values) {
         var arr = [];
@@ -159,9 +160,10 @@
 
     function getJson() {
       toJson = self.fields.concat(self.correctives);
+      delete toJson[5].required;
       toJson.forEach(rebuildData);
 
-      self.result = {
+      result = {
         "workflowCreationInform4/06/2013 03:40 A6/P6ation": {
           "workflowTypeName": "Incident Report",
           "name": "Report - 2013.05.09"
@@ -171,17 +173,19 @@
           "fields": toJson
         }
       }
-      myData = JSON.stringify(self.result, function(key, val) {
-        if (key == '$$hashKey' || key == 'required') {
-          return undefined;
-        }
-        return val;
-      });
 
-      console.log(myData);
+      location.reload();
+      var str = JSON.stringify(result, null, 2);
+      //console.log(str);
+      var w = window.open();
+      w.document.open();
+      w.document.write("<body></body>");
+      w.document.body.appendChild(document.createElement('pre')).innerHTML = str;
+
     }
 
     function addAction(element, index) {
+      self.correctives = [];
       self.correctives.push({
         "name": "Description of Corrective Action " + '(' + (index + 1) + ')',
         "values": element.description
@@ -201,7 +205,7 @@
       var str = ['Loss of well control', 'Fatality(ies)', 'Hospitalizaion or medical treatment', 'Spill offsite > 50 Bbls', 'Spill to water, any amount', 'Property damage'];
       var c = 0;
       var result = [];
-      if (self.nonApply) {
+      if (self.noneApply) {
         return 'None Apply';
       } else {
 
@@ -321,7 +325,7 @@
     function open($event) {
       $event.preventDefault();
       $event.stopPropagation();
-
+      console.log($scope);
       self.opened = true;
     }
 

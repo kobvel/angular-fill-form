@@ -1,19 +1,24 @@
 body {
 	padding-left: 25px;
+		
 }
-body > div{
-	border: solid;
-	height: 38em;
-	background-color: #E0FFFF;
-}
+
 .titlesrow{
 	display: inline-block;
 }
-body > div > div {
+.not-main-container{
 	padding-top: 25px;
-	
 }
-
+.main-container{
+	background-color: white;
+	height: 36em;
+	border-bottom:  1px solid #ddd;
+	border-left:  1px solid #ddd;
+	border-right:  1px solid #ddd;
+}
+.nav-tabs{
+	width: 1170px;
+}
 .infotext{
 	text-align: right;
 }
@@ -33,18 +38,6 @@ body > div > div {
 	margin-bottom: 0.2em;
 }
 
-ul.tabs,
-ul.tabs li {
-	margin: 0;	
-	padding: 0;	
-}
-
-ul.tabs li {	
-	display: inline-block;	
-	width: 150px;
-	border: solid 1px;
-	
-}
 .buttonSubmit{
 	width: 100px;
 }
@@ -56,5 +49,6 @@ ul.tabs li {
 	height: 29em;
 }
 #table-result table tr td:nth-child(1) { 
-   text-align: right;
+	text-align: right;
 } 
+
