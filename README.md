@@ -1,4 +1,4 @@
 # test
- npm install http-server -g
+ $ npm install http-server -g
  
  $ http-server
