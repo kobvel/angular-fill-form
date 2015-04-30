@@ -1,6 +1,6 @@
 (function() {
   angular
-    .module('Softengi.controllers')
+    .module('App.controllers')
     .controller('AppController', AppController);
 
   AppController.$inject = ['$scope'];
@@ -175,6 +175,7 @@
       }
 
       location.reload();
+
       var str = JSON.stringify(result, null, 2);
       //console.log(str);
       var w = window.open();

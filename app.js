@@ -1,9 +1,9 @@
-angular.module('Softengi.controllers', []);
-angular.module('Softengi.directives', []);
+angular.module('App.controllers', []);
+angular.module('App.directives', []);
 
-var app = angular.module('Softengi', [
+var app = angular.module('App', [
   'ui.router',
-  'Softengi.controllers',
+  'App.controllers',
   'ui.bootstrap'
 ]);
 
